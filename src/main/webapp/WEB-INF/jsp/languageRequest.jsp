@@ -9,12 +9,12 @@
 
 <body>
 <header>
-<a href="./SentimentRequest">Sentiment</a>
+<a href="./request">Sentiment</a>
 </header>
 <h1>CognitiveServiceを使うサイト</h1>
 
 <h3>調べたい文字列を教えてください</h3>
-<form method="POST" action="./result">
+<form method="POST" action="./languageresult">
 <input type="TEXT" name="string" />
 <input type="submit" />
 </form>

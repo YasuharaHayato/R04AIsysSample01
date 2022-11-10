@@ -8,16 +8,18 @@
 <title>Insert title here</title>
 </head>
 <%
-	Optional<String> message = 
-		Optional.ofNullable((String) request.getAttribute("message"));
-Optional<String> string = 
-	Optional.ofNullable((String) request.getAttribute("string"));
-
+	String string = (String)request.getAttribute("string");
+	double message1 = (double)request.getAttribute("message1");
+	double message2 = (double)(request.getAttribute("message2"));
+	double message3 = (double)(request.getAttribute("message3"));
 %>
 
 <body>
-<H1>DetectLanguage</H1>
-<H3>文章：<%= string.orElse("ERROR") %></H3>
-<H3>結果：<%= message.orElse("ERROR") %></H3>
+<H1>Sentiment</H1>
+<H3>文章：<%= string %></H3>
+<H3>結果：<br></H3>
+<%= "positive:"+ message1 %>
+<%= "neutral:"+ message2 %>
+<%= "negative:"+ message3 %>
 </body>
 </html>

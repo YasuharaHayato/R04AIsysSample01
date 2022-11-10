@@ -25,25 +25,6 @@ public class ResultServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String string = "生姜焼定食";
-		try {
-			Language result = Json05.getLanguage(string);
-			String message = result.documents[0].detectedLanguage.name;
-			request.setAttribute("message", message);
-			request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -54,9 +35,13 @@ public class ResultServlet extends HttpServlet {
 		request.setAttribute("string", string);
 
 		try {
-			Language result = Json05.getLanguage(string);
-			String message = result.documents[0].detectedLanguage.name;
-			request.setAttribute("message", message);
+			Language2 result = Sentiment.getLanguage(string);
+			double message1 = result.documents[0].confidenceScores.positive;
+			double message2 = result.documents[0].confidenceScores.neutral;
+			double message3 = result.documents[0].confidenceScores.negative;
+			request.setAttribute("message1", message1);
+			request.setAttribute("message2", message2);
+			request.setAttribute("message3", message3);
 			request.getRequestDispatcher("/WEB-INF/jsp/result.jsp").forward(request, response);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
